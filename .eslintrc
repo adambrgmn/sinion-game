@@ -1,12 +1,13 @@
 {
-      "parser": "babel-eslint",
-      "extends": "airbnb",
-      "env": {
-        "browser": true,
-        "node": true,
-        "mocha": true
-      },
-      "rules": {
-        "strict": 0
-      }
-    }
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "plugins": ["react", "jsx-a11y", "import"],
+  "rules": {
+    "strict": 0
+  }
+}
