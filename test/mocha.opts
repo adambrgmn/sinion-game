@@ -1,0 +1,4 @@
+app/**/*.spec.js
+--require test/index.js
+--compilers js:babel-register
+--recursive
