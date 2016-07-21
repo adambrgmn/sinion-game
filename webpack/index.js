@@ -28,6 +28,45 @@ export const loadJSX = (include) => ({
   },
 });
 
+export const loadImagesBuild = (path) => ({
+  module: {
+    loaders: [
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loaders: [
+          'url?limit=25000&hash=sha512&digest=hex&context=./app/images&name=images/[path][name].[hash].[ext]', // eslint-disable-line max-len
+          'image-webpack?bypassOnDebug?optimizationLevel=7&interlaced=false',
+        ],
+        include: path,
+      },
+    ],
+  },
+});
+
+export const loadImagesDev = (path) => ({
+  module: {
+    loaders: [
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loader: 'url?limit=25000&context=./app/images&name=images/[path][name].[ext]',
+        include: path,
+      },
+    ],
+  },
+});
+
+export const loadFavicon = (path) => ({
+  module: {
+    loaders: [
+      {
+        test: /\.ico$/,
+        loader: 'file?name=[name].[ext]',
+        include: path,
+      },
+    ],
+  },
+});
+
 export const loadIsparta = (include) => ({
   module: {
     preLoaders: [

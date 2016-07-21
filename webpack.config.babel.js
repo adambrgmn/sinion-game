@@ -11,6 +11,8 @@ const PATHS = {
   style: [
     join(__dirname, 'app', 'main.scss'),
   ],
+  images: join(__dirname, 'app', 'images'),
+  favicon: join(__dirname, 'app'),
   build: join(__dirname, 'build'),
   test: join(__dirname, 'tests'),
 };
@@ -25,6 +27,7 @@ const common = merge(
     output: {
       path: PATHS.build,
       filename: '[name].js',
+      publicPath: '/',
     },
     resolve: {
       extensions: ['', '.js', '.jsx'],
@@ -32,6 +35,7 @@ const common = merge(
   },
   parts.indexTemplate({ title: 'Sinion Game', appMountId: 'app' }),
   parts.loadJSX(PATHS.app),
+  parts.loadFavicon(PATHS.favicon),
   parts.lintJSX(PATHS.app),
 );
 
@@ -44,15 +48,13 @@ switch (TARGET) {
       common,
       {
         devtool: 'source-map',
-        // entry: {
-        //   style: PATHS.style,
-        // },
         output: {
           path: PATHS.build,
           filename: '[name].[chunkhash].js',
           chunkFilename: '[chunkhash].js',
         },
       },
+      parts.loadImagesBuild(PATHS.images),
       parts.clean(PATHS.build),
       parts.setFreeVariable('process.env.NODE_ENV', 'production'),
       parts.extractBundle({
@@ -79,11 +81,9 @@ switch (TARGET) {
       common,
       {
         devtool: 'eval-source-map',
-        // entry: {
-        //   style: PATHS.style,
-        // },
       },
       parts.setupCSS(PATHS.app),
+      parts.loadImagesDev(PATHS.images),
       parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT,
