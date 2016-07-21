@@ -1,4 +1,7 @@
-.header {
-  color: tomato;
-  font-family: cursive;
+@import '~normalize.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }

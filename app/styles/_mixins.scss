@@ -1,0 +1,5 @@
+@mixin flexBoxParent($direction, $justify) {
+  display: flex;
+  flex-flow: $direction nowrap;
+  justify-content: $justify;
+}

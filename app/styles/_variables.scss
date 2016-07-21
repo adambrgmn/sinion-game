@@ -1,0 +1,21 @@
+// Fonts
+$font-family-main: 'Source Code Pro', monospace;
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$font-size-base: 1rem; //16px;
+$font-size-logo: $font-size-base * 2.5;
+$font-size-button: $font-size-base * 0.8;
+
+// Colors
+$color-white: #fdfdfd;
+$color-black: #030303;
+$color-brand: #bbdb9b;
+$color-sinion-1: #abc4a1;
+$color-sinion-2: #9db4ab;
+$color-sinion-3: #8d9d90;
+$color-sinion-4: #878e76;
+
+// Border
+$standard-border: 1px solid $color-black;
