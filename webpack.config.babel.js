@@ -36,6 +36,7 @@ const common = merge(
   parts.indexTemplate({ title: 'Sinion Game', appMountId: 'app' }),
   parts.loadJSX(PATHS.app),
   parts.loadFavicon(PATHS.favicon),
+  parts.loadJson(PATHS.app),
   parts.lintJSX(PATHS.app),
 );
 
