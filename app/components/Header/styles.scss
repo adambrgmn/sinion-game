@@ -1,0 +1,24 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.header {
+  @include flexBoxParent(row, space-between);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem;
+  width: 100%;
+  background: $color-white;
+}
+
+.headerLogo {
+  margin: 0;
+  color: $color-brand;
+  font-family: $font-family-main;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-logo;
+}
+
+.headerButtonHowToContainer {
+  @include flexBoxParent(column, center);
+}
