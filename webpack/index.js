@@ -2,16 +2,17 @@ import webpack from 'webpack';
 import CleanPlugin from 'clean-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import htmlTemplate from 'html-webpack-template';
 import autoprefixer from 'autoprefixer';
 
 export const indexTemplate = (options) => ({
   plugins: [
     new HtmlWebpackPlugin({
-      template: htmlTemplate,
+      template: './webpack/template/index.ejs',
       title: options.title,
       appMountId: options.appMountId,
+      mobile: true,
       inject: false,
+      googleFonts: 'https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700',
     }),
   ],
 });
@@ -61,6 +62,18 @@ export const loadFavicon = (path) => ({
       {
         test: /\.ico$/,
         loader: 'file?name=[name].[ext]',
+        include: path,
+      },
+    ],
+  },
+});
+
+export const loadJson = (path) => ({
+  module: {
+    loaders: [
+      {
+        test: /.json$/,
+        loader: 'json',
         include: path,
       },
     ],
