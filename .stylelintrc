@@ -52,7 +52,10 @@
             "max-width",
             "padding",
             "border",
-            "margin"
+            "margin",
+            "flex-flow",
+            "justify-content",
+            "align-items"
           ]
         },
         {
