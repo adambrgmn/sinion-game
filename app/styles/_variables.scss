@@ -5,17 +5,20 @@ $font-weight-normal: 400;
 $font-weight-bold: 700;
 
 $font-size-base: 1rem; //16px;
-$font-size-logo: $font-size-base * 2.5;
-$font-size-button: $font-size-base * 0.8;
+$font-size-logo: $font-size-base;
+$font-size-button: $font-size-base * 0.75;
 
 // Colors
-$color-white: #fdfdfd;
-$color-black: #030303;
-$color-brand: #bbdb9b;
-$color-sinion-1: #abc4a1;
-$color-sinion-2: #9db4ab;
-$color-sinion-3: #8d9d90;
-$color-sinion-4: #878e76;
+$color-white: rgb(255, 255, 240);
+$color-black: rgb(0, 0, 0);
+$color-brand: rgb(255, 255, 155);
+$color-sinion-1: rgb(205, 255, 240);
+$color-sinion-2: rgb(255, 195, 240);
+$color-sinion-3: rgb(152, 235, 139);
+$color-sinion-4: rgb(255, 101, 93);
 
 // Border
 $standard-border: 1px solid $color-black;
+
+// Header
+$header-height: 3.125rem;

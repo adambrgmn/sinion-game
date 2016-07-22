@@ -1,0 +1,11 @@
+@import '../../styles/variables';
+
+.paragraph {
+  font-family: $font-family-main;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-base;
+}
+
+.paragraphCenter {
+  text-align: center;
+}

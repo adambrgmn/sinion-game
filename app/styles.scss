@@ -1,7 +1,12 @@
 @import '~normalize.css';
+@import './styles/variables';
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+body {
+  background: $color-brand;
 }

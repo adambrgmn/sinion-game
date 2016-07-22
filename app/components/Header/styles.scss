@@ -8,17 +8,26 @@
   left: 0;
   padding: 0.5rem;
   width: 100%;
+  height: $header-height;
   background: $color-white;
+  align-items: center;
 }
 
 .headerLogo {
   margin: 0;
-  color: $color-brand;
+  padding: 0.25rem;
+  border: $standard-border;
+  transform: translate(2px, -2px);
+  background: $color-brand;
+  color: $color-black;
   font-family: $font-family-main;
   font-weight: $font-weight-bold;
   font-size: $font-size-logo;
-}
+  box-shadow: -2px 2px $color-black;
+  transition: transform 0.1s, box-shadow 0.1s;
 
-.headerButtonHowToContainer {
-  @include flexBoxParent(column, center);
+  &:hover {
+    transform: translate(0, 0);
+    box-shadow: 0 0 $color-black;
+  }
 }

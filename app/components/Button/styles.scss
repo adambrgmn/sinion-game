@@ -2,14 +2,18 @@
 
 .button {
   border: $standard-border;
-  border-radius: 0.3rem;
   padding: 0.5rem;
-  background: none;
+  transform: translate(2px, -2px);
+  background: $color-white;
   font-family: $font-family-main;
   font-size: $font-size-button;
-  transition: background 0.3s ease;
+  box-shadow: -2px 2px $color-black;
+  transition: all 0.3s ease;
 
   &:hover {
-    background: $color-brand;
+    transform: translate(0, 0);
+    background: lighten($color-black, 80%);
+    box-shadow: 0 0;
+    outline: none;
   }
 }
