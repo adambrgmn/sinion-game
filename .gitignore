@@ -1,6 +1,9 @@
 # Build directory
 build
 
+# InDesign lock-files
+*.idlk
+
 # Logs
 logs
 *.log
