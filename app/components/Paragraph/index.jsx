@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import styles from './styles.scss';
 
 export default function Paragraph({ customClassName, center, children }) {
-  console.log(center); // eslint-disable-line no-console
   const cx = {
     [styles.paragraph]: true,
     [styles.paragraphCenter]: center,

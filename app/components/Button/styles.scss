@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .button {
+  margin: 0.5rem;
   border: $standard-border;
   padding: 0.5rem;
   transform: translate(2px, -2px);
