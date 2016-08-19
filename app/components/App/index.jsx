@@ -1,17 +1,17 @@
 import React from 'react';
 
+import Message from '../Message';
+
 import styles from './styles.scss';
 
 export default function App() {
   return (
     <div className={styles.appContainer}>
-      <div className={styles.message}>
-        <p className={styles.messageText}>Let's get started!</p>
+      <div className={styles.menu}>
+        <button className={styles.menuButton}>Start a new game</button>
       </div>
 
-      <div className={styles.menu}>
-        <button className={styles.menuButton}>Start game</button>
-      </div>
+      <Message message="Let's get started!" />
 
       <div className={styles.game}>
         <button className={styles.gameButton}>1</button>
