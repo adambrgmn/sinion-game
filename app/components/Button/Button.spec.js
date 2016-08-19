@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
+import { spy } from 'sinon';
 import React from 'react';
 
 import Button from '../Button';
@@ -15,7 +15,7 @@ describe('Component: <Button>', () => {
   });
 
   it('should fire a function when clicked', () => {
-    const onButtonClick = sinon.spy();
+    const onButtonClick = spy();
     const wrapper = shallow(<Button onButtonClick={onButtonClick} />);
     wrapper.find(`.${styles.button}`).simulate('click');
 
@@ -24,7 +24,7 @@ describe('Component: <Button>', () => {
 
   it('should render children, when passed', () => {
     const child = 'Text';
-    const wrapper = shallow(<Button>child</Button>);
+    const wrapper = shallow(<Button>{child}</Button>);
     const found = wrapper.contains(child);
 
     expect(found).to.equal(true);
@@ -36,5 +36,18 @@ describe('Component: <Button>', () => {
     const foundButton = wrapper.find(`.${className}`);
 
     expect(foundButton).to.have.length(1);
+  });
+
+  it('should apply a "active"-class on mouseDown', () => {
+    const wrapper = shallow(<Button />);
+    const button = wrapper.find(`.${styles.button}`);
+
+    button.simulate('mouseDown');
+    let found = wrapper.find(`.${styles.buttonActive}`);
+    expect(found).to.have.length(1);
+
+    button.simulate('mouseUp');
+    found = wrapper.find(`.${styles.buttonActive}`);
+    expect(found).to.have.length(0);
   });
 });

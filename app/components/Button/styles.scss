@@ -7,10 +7,19 @@
   box-shadow: -2px 2px $color-black;
   transition: all 0.3s ease;
 
-  &:hover,
-  &:focus {
+  &:hover {
     transform: translate(4px, -4px);
     box-shadow: -4px 4px;
     outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.buttonActive {
+    transform: translate(0, 0);
+    box-shadow: 0 0;
+    filter: brightness(75%);
   }
 }
