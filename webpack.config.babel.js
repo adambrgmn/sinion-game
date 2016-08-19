@@ -37,7 +37,7 @@ const common = merge(
   parts.loadJSX(PATHS.app),
   parts.loadFavicon(PATHS.favicon),
   parts.loadJson(PATHS.app),
-  parts.lintJSX(PATHS.app),
+  // parts.lintJSX(PATHS.app),
 );
 
 let config;
