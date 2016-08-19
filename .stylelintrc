@@ -17,72 +17,9 @@
     "selector-max-compound-selectors": 3,
     "selector-max-specificity": "0,3,0",
     "at-rule-no-unknown": [true, {
-      "ignoreAtRules": ["include", "mixin"]
+      "ignoreAtRules": ["include", "mixin", "for"]
     }],
     "declaration-no-important": true,
-    "property-no-unknown": true,
-    "declaration-block-properties-order": [
-      [
-        {
-          "order": "flexible",
-          "properties": [
-            "content"
-          ]
-        },
-        {
-          "order": "flexible",
-          "properties": [
-            "position",
-            "z-index",
-            "top",
-            "bottom",
-            "left",
-            "right"
-          ]
-        },
-        {
-          "order": "flexible",
-          "properties": [
-            "display",
-            "overflow",
-            "box-sizing",
-            "width",
-            "height",
-            "max-height",
-            "max-width",
-            "padding",
-            "border",
-            "margin",
-            "flex-flow",
-            "justify-content",
-            "align-items"
-          ]
-        },
-        {
-          "order": "flexible",
-          "properties": [
-            "transform"
-          ]
-        },
-        {
-          "order": "flexible",
-          "properties": [
-            "background",
-            "color"
-          ]
-        },
-        {
-          "order": "flexible",
-          "properties": [
-            "font",
-            "line",
-            "text"
-          ]
-        }
-      ],
-      {
-        "unspecified": "bottomAlphabetical"
-      }
-    ]
+    "property-no-unknown": true
   }
 }
