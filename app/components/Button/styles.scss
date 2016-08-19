@@ -1,6 +1,7 @@
 @import '../../styles/mixins';
 
 .button {
+  margin: 0.5rem;
   border: $standard-border;
   border-radius: $standard-border-radius;
   transform: translate(2px, -2px);

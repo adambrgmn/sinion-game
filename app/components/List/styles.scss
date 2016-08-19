@@ -1,0 +1,10 @@
+@import '../../styles/variables';
+
+.list {
+  padding: 1rem;
+}
+
+.listItem {
+  font-family: $font-family-main;
+  font-size: $font-size-listItem;
+}

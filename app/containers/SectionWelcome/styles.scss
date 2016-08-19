@@ -1,0 +1,22 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.sectionWelcome {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.sectionWelcomeParagraph {
+  padding: 0 2rem;
+  text-align: left;
+}
+
+.sectionWelcomeButtonContainer {
+  text-align: center;
+}
+
+.sectionWelcomeButton {
+  color: inherit;
+}
