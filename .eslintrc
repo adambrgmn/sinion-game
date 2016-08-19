@@ -3,11 +3,13 @@
   "extends": "airbnb",
   "env": {
     "browser": true,
+    "es6": true,
     "node": true,
     "mocha": true
   },
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
-    "strict": 0
+    "strict": 0,
+    "no-console": 0
   }
 }
