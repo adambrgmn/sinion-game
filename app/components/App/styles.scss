@@ -1,6 +1,49 @@
+@import '../../styles/mixins';
 @import '../../styles/variables';
 
 .appContainer {
-  padding: $header-height 0.5rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
   height: 100vh;
+  padding: 1rem;
+  font-family: $font-family-main;
+}
+
+.message {
+  color: inherit;
+}
+
+.messageText {
+  font-weight: $font-weight-bold;
+}
+
+.menu {
+  display: none;
+}
+
+.menuButton {
+  padding: 0.5rem;
+  background: $color-white;
+  font-size: $font-size-button;
+
+  @include buttonStandard();
+}
+
+.game {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.gameButton {
+  width: calc(50vw - 2rem);
+  height: calc(50vw - 2rem);
+  margin: 0.5rem;
+
+  @include buttonStandard();
+  @include colorBoxes(4);
 }
