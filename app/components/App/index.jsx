@@ -16,6 +16,10 @@ export default function App() {
       <Message message="Let's get started!" />
 
       <Game />
+
+      <div className="progress">
+        <p>0 / 1</p>
+      </div>
     </div>
   );
 }
