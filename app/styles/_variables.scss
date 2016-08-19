@@ -12,13 +12,11 @@ $font-size-button: $font-size-base * 0.75;
 $color-white: rgb(255, 255, 240);
 $color-black: rgb(0, 0, 0);
 $color-brand: rgb(255, 255, 155);
-$color-sinion-1: rgb(205, 255, 240);
-$color-sinion-2: rgb(255, 195, 240);
-$color-sinion-3: rgb(152, 235, 139);
-$color-sinion-4: rgb(255, 101, 93);
+$color-buttons: rgb(205, 255, 240), rgb(255, 195, 240), rgb(152, 235, 139), rgb(255, 101, 93);
 
 // Border
 $standard-border: 1px solid $color-black;
+$standard-border-radius: 0.3rem;
 
 // Header
 $header-height: 3.125rem;
