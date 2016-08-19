@@ -20,8 +20,6 @@
   padding: 0.5rem;
   background: $color-white;
   font-size: $font-size-button;
-
-  @include buttonStandard();
 }
 
 .game {
@@ -35,7 +33,6 @@
   width: calc(50vw - 2rem);
   height: calc(50vw - 2rem);
   margin: 0.5rem;
-
-  @include buttonStandard();
+  
   @include colorBoxes(4);
 }
