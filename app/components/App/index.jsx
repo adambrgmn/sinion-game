@@ -18,7 +18,7 @@ export default function App() {
       <Game />
 
       <div className="progress">
-        <p>0 / 1</p>
+        <p>You 0 / 1 Computer</p>
       </div>
     </div>
   );
