@@ -9,14 +9,11 @@ export default class Button extends Component {
     this.state = {
       active: false,
     };
-
-    this.onMouseDown = this.onMouseDown.bind(this);
-    this.onMouseUp = this.onMouseUp.bind(this);
   }
 
-  onMouseDown() { this.setState({ active: true }); }
+  onClickStart = () => { this.setState({ active: true }); }
 
-  onMouseUp() { this.setState({ active: false }); }
+  onClickEnd = () => { this.setState({ active: false }); }
 
   render() {
     const {
@@ -35,8 +32,10 @@ export default class Button extends Component {
       <button
         className={classNames(cx, customClassName)}
         onClick={onButtonClick}
-        onMouseDown={this.onMouseDown}
-        onMouseUp={this.onMouseUp}
+        onMouseDown={this.onClickStart}
+        onMouseUp={this.onClickEnd}
+        onTouchStart={this.onClickStart}
+        onTouchEnd={this.onClickEnd}
       >
         {children}
       </button>
