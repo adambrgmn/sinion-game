@@ -11,18 +11,3 @@
   padding: 1rem;
   font-family: $font-family-main;
 }
-
-.game {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.gameButton {
-  width: calc(50vw - 2rem);
-  height: calc(50vw - 2rem);
-  margin: 0.5rem;
-  
-  @include colorBoxes(4);
-}
