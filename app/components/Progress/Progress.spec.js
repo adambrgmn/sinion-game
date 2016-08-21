@@ -21,12 +21,9 @@ describe('Component: <Progress>', () => {
       computerTotal: 10,
     };
     const wrapper = shallow(<Progress {...props} />);
-    const foundPlayer = wrapper.contains(props.playerCurrent);
-    const foundComputer = wrapper.contains(props.playerTotal);
+    const html = wrapper.find(Paragraph).html();
 
-    expect(foundPlayer).to.equal(true);
-    expect(foundComputer).to.equal(true);
+    expect(html)
+      .to.contain(`You ${props.playerCurrent} / ${props.computerTotal} Computer`);
   });
-
-  it('should update when props is updated');
 });
