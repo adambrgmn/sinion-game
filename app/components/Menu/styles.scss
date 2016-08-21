@@ -1,0 +1,12 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.menu {
+  display: block;
+}
+
+.menuButton {
+  padding: 0.5rem;
+  background: $color-white;
+  font-size: $font-size-button;
+}

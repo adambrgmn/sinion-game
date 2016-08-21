@@ -12,16 +12,6 @@
   font-family: $font-family-main;
 }
 
-.menu {
-  display: block;
-}
-
-.menuButton {
-  padding: 0.5rem;
-  background: $color-white;
-  font-size: $font-size-button;
-}
-
 .game {
   display: flex;
   flex-flow: row wrap;
