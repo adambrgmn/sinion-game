@@ -30,6 +30,18 @@ export default class App extends Component {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('keydown', (event) => {
+      const { key } = event;
+      const keyNum = Number(key);
+
+      if (keyNum > 0 && keyNum < 5) {
+        event.preventDefault();
+        this.onPlayerButtonPress(keyNum);
+      }
+    });
+  }
+
   onMenuButtonClick = () => {
     const { gameRunning } = this.state;
 
@@ -81,6 +93,10 @@ export default class App extends Component {
       },
     }, () => {
       if (this.state.playerSeq.length === this.state.computerSeq.length) {
+        this.setState({
+          playerSeq: [],
+          message: 'Well done! Thats how we roll. Now I go again...',
+        });
         this.playComputerRound();
       }
     });

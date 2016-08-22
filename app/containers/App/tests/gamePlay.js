@@ -33,13 +33,26 @@ export default function gamePlay() {
       const wrapper = mount(<App />);
       const instance = wrapper.instance();
 
-      wrapper.setState({ computerSeq: [1, 2] });
+      wrapper.setState({ computerSeq: [1, 2, 3] });
 
       instance.onPlayerButtonPress(1);
       expect(wrapper.state().playerSeq).to.deep.equal([1]);
 
       instance.onPlayerButtonPress(2);
       expect(wrapper.state().playerSeq).to.deep.equal([1, 2]);
+    });
+
+    it('should reset playerSeq when the player completed a full sequence', () => {
+      const wrapper = mount(<App />);
+      const instance = wrapper.instance();
+
+      wrapper.setState({ computerSeq: [1, 2, 3] });
+
+      instance.onPlayerButtonPress(1);
+      instance.onPlayerButtonPress(2);
+      instance.onPlayerButtonPress(3);
+
+      expect(wrapper.state().playerSeq).to.deep.equal([]);
     });
 
     it('should fire an alert if player clicks the wrong button', () => {
