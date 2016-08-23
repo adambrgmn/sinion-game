@@ -17,8 +17,8 @@
   @include colorBoxes(4);
 
   @include mediaDesktop {
-    width: calc(25vw - 2rem);
-    height: calc(25vw - 2rem);
+    width: calc(15vw - 2rem);
+    height: calc(15vw - 2rem);
   }
 }
 
