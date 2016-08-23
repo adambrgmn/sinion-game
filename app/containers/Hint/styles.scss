@@ -1,0 +1,49 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.hintContainer {
+  color: inherit;
+}
+
+.hintButton,
+.hintExit {
+  padding: 0.5rem;
+  background: $color-white;
+  font-size: $font-size-button;
+}
+
+.hintWindow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border: $standard-border;
+  border-radius: $standard-border-radius;
+  box-shadow: -4px 4px $color-black;
+  background: $color-brand;
+}
+
+.hintExit {
+  color: inherit;
+}
+
+.hintMiniMap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  margin: 0 auto;
+
+  & > span {
+    display: inline-block;
+    padding: 1rem;
+    margin: 0.5rem;
+    border: $standard-border;
+    border-radius: $standard-border-radius;
+    box-shadow: -4px 4px $color-black;
+
+    @include colorBoxes(4);
+  }
+}
