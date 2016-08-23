@@ -6,6 +6,7 @@ import styles from './styles.scss';
 
 export default function Game({
   activeButton,
+  gamePlanDisabled,
   onButtonClick,
 }) {
   return (
@@ -16,6 +17,7 @@ export default function Game({
           customClassName={styles.gameButton}
           onButtonClick={() => onButtonClick(num)}
           active={activeButton === num}
+          disabled={gamePlanDisabled}
         >
           {num}
         </Button>
@@ -26,5 +28,6 @@ export default function Game({
 
 Game.propTypes = {
   activeButton: PropTypes.number,
+  gamePlanDisabled: PropTypes.bool,
   onButtonClick: PropTypes.func,
 };

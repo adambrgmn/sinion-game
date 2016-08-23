@@ -152,6 +152,7 @@ export default class App extends Component {
   render() {
     const {
       gameRunning,
+      computerPlaying,
       message,
       activeButton,
       progress,
@@ -161,7 +162,11 @@ export default class App extends Component {
       <div className={styles.appContainer}>
         <Menu gameRunning={gameRunning} onMenuButtonClick={this.onMenuButtonClick} />
         <Message message={message} />
-        <Game activeButton={activeButton} onButtonClick={this.onPlayerButtonPress} />
+        <Game
+          activeButton={activeButton}
+          gamePlanDisabled={!gameRunning && !computerPlaying}
+          onButtonClick={this.onPlayerButtonPress}
+        />
         <Progress {...progress} />
       </div>
     );

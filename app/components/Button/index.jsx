@@ -18,6 +18,7 @@ export default class Button extends Component {
   render() {
     const {
       active,
+      disabled,
       onButtonClick,
       customClassName,
       children,
@@ -36,6 +37,7 @@ export default class Button extends Component {
         onMouseUp={this.onClickEnd}
         onTouchStart={this.onClickStart}
         onTouchEnd={this.onClickEnd}
+        disabled={disabled}
       >
         {children}
       </button>
@@ -45,6 +47,7 @@ export default class Button extends Component {
 
 Button.propTypes = {
   active: PropTypes.bool,
+  disabled: PropTypes.bool,
   onButtonClick: PropTypes.func,
   onButtonMouseDown: PropTypes.func,
   onButtonMouseUp: PropTypes.func,
