@@ -20,6 +20,8 @@ export default class Button extends Component {
       active,
       disabled,
       onButtonClick,
+      onClickStart,
+      onClickEnd,
       customClassName,
       children,
     } = this.props;
@@ -33,10 +35,10 @@ export default class Button extends Component {
       <button
         className={classNames(cx, customClassName)}
         onClick={onButtonClick}
-        onMouseDown={this.onClickStart}
-        onMouseUp={this.onClickEnd}
-        onTouchStart={this.onClickStart}
-        onTouchEnd={this.onClickEnd}
+        onMouseDown={onClickStart}
+        onMouseUp={onClickEnd}
+        onTouchStart={onClickStart}
+        onTouchEnd={onClickEnd}
         disabled={disabled}
       >
         {children}
@@ -49,8 +51,8 @@ Button.propTypes = {
   active: PropTypes.bool,
   disabled: PropTypes.bool,
   onButtonClick: PropTypes.func,
-  onButtonMouseDown: PropTypes.func,
-  onButtonMouseUp: PropTypes.func,
+  onClickStart: PropTypes.func,
+  onClickEnd: PropTypes.func,
   customClassName: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
