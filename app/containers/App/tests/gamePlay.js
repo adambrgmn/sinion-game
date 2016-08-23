@@ -35,10 +35,10 @@ export default function gamePlay() {
 
       wrapper.setState({ computerSeq: [1, 2, 3] });
 
-      instance.onPlayerButtonPress(1);
+      instance.onPlayerPressEnd(1);
       expect(wrapper.state().playerSeq).to.deep.equal([1]);
 
-      instance.onPlayerButtonPress(2);
+      instance.onPlayerPressEnd(2);
       expect(wrapper.state().playerSeq).to.deep.equal([1, 2]);
     });
 
@@ -48,9 +48,9 @@ export default function gamePlay() {
 
       wrapper.setState({ computerSeq: [1, 2, 3] });
 
-      instance.onPlayerButtonPress(1);
-      instance.onPlayerButtonPress(2);
-      instance.onPlayerButtonPress(3);
+      instance.onPlayerPressEnd(1);
+      instance.onPlayerPressEnd(2);
+      instance.onPlayerPressEnd(3);
 
       expect(wrapper.state().playerSeq).to.deep.equal([]);
     });
@@ -60,7 +60,7 @@ export default function gamePlay() {
       const instance = wrapper.instance();
 
       wrapper.setState({ computerSeq: [1] });
-      instance.onPlayerButtonPress(2);
+      instance.onPlayerPressEnd(2);
 
       expect(wrapper.state().error).to.equal(true);
     });

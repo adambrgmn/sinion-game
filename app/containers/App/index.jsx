@@ -3,6 +3,7 @@ import * as config from '../../config';
 
 import styles from './styles.scss';
 
+import GameAudio from '../../utils/gameAudio';
 import randomInt from '../../utils/randomInt';
 
 import {
@@ -28,18 +29,31 @@ export default class App extends Component {
         playerCurrent: 0,
       },
     };
+
+    this.audio = new GameAudio();
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', (event) => {
+    let keyIsDown = false;
+
+    const keyEvent = (fn, keyUpEvent) => (event) => {
       const { key } = event;
       const keyNum = Number(key);
+      const predicate = keyNum > 0 && keyNum < 5;
 
-      if (keyNum > 0 && keyNum < 5) {
-        event.preventDefault();
-        this.onPlayerButtonPress(keyNum);
+      if (!predicate) return null;
+      event.preventDefault();
+
+      if (!keyIsDown || keyUpEvent) {
+        keyIsDown = !keyIsDown;
+        return fn(keyNum);
       }
-    });
+
+      return null;
+    };
+
+    window.addEventListener('keydown', keyEvent(this.onPlayerPressStart, false));
+    window.addEventListener('keyup', keyEvent(this.onPlayerPressEnd, true));
   }
 
   onMenuButtonClick = () => {
@@ -67,7 +81,9 @@ export default class App extends Component {
     }
   }
 
-  onPlayerButtonPress = (clickedTile) => {
+  onPlayerPressStart = (tile) => this.activateButton(tile)
+
+  onPlayerPressEnd = (tile) => {
     const {
       computerSeq,
       playerSeq,
@@ -76,26 +92,31 @@ export default class App extends Component {
     const playerSeqLength = playerSeq.length;
     const correspondingComputerTile = computerSeq[playerSeqLength];
 
-    if (correspondingComputerTile !== clickedTile) {
+    this.deactiveButton();
+
+    if (correspondingComputerTile !== tile) {
       return this.setState({
         playerSeq: [],
+        computerSeq: [],
+        activeButton: undefined,
         error: true,
         message: 'Gaah! Sorry that was wrong! Wan\'t to go at it again? (Click the button 👆)',
       });
     }
 
     return this.setState({
-      playerSeq: playerSeq.concat(clickedTile),
+      playerSeq: playerSeq.concat(tile),
+      activeButton: undefined,
       message: 'Great, you\'re doing fine. Just keep it going!',
       progress: {
-        computerTotal: this.state.computerSeq.length,
+        computerTotal: computerSeq.length,
         playerCurrent: this.state.progress.playerCurrent + 1,
       },
     }, () => {
       if (this.state.playerSeq.length === this.state.computerSeq.length) {
         this.setState({
           playerSeq: [],
-          message: 'Well done! Thats how we roll. Now I go again...',
+          message: 'Well done! That\'s how we roll! Now I go again...',
         });
         this.playComputerRound();
       }
@@ -119,12 +140,18 @@ export default class App extends Component {
     // Instatiate the sequence
     const interval = setInterval(() => {
       const { computerSeq } = this.state;
+      const tile = computerSeq[intervalCount];
 
       // If the there are still tiles left in the sequence, fetch them,
       // play a sound and activate a button.
       // Then add one call to the interval
       if (intervalCount < computerSeq.length) {
-        this.activateButtonComputer(computerSeq[intervalCount]);
+        this.activateButton(tile);
+
+        setTimeout(() => {
+          this.deactiveButton();
+        }, timeDiff / 4 * 3);
+
         intervalCount++;
       } else {
         // If there are no more tiles, clear the interval and prompt the user to
@@ -142,11 +169,13 @@ export default class App extends Component {
     }, timeDiff);
   }
 
-  activateButtonComputer = (tile) => {
-    const timeDiff = config.computerActiveButton / 4 * 3;
-
+  activateButton = (tile) => {
     this.setState({ activeButton: tile });
-    setTimeout(() => this.setState({ activeButton: undefined }), timeDiff);
+    this.audio.start(tile);
+  }
+  deactiveButton = () => {
+    this.setState({ activeButton: undefined });
+    this.audio.stop();
   }
 
   render() {
@@ -165,7 +194,8 @@ export default class App extends Component {
         <Game
           activeButton={activeButton}
           gamePlanDisabled={!gameRunning && !computerPlaying}
-          onButtonClick={this.onPlayerButtonPress}
+          onButtonClickStart={this.onPlayerPressStart}
+          onButtonClickEnd={this.onPlayerPressEnd}
         />
         <Progress {...progress} />
       </div>
