@@ -15,10 +15,6 @@
   text-indent: -9999px;
 
   @include colorBoxes(4);
-
-  &:nth-child(3) {
-    order: 4;
-  }
 }
 
 .gameButtonClicked {
