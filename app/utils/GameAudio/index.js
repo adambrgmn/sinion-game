@@ -1,6 +1,6 @@
 export default class GameAudio {
   constructor() {
-    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    this.audioCtx = new (AudioContext || window.AudioContext || window.webkitAudioContext)();
     this.audioDest = this.audioCtx.destination;
     this.osc = null;
     this.frequencys = {
