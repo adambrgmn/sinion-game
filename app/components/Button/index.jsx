@@ -9,19 +9,32 @@ export default class Button extends Component {
     this.state = {
       active: false,
     };
+
+    this.onClickStart = this.onClickStart.bind(this);
+    this.onClickEnd = this.onClickEnd.bind(this);
   }
 
-  onClickStart = () => { this.setState({ active: true }); }
+  onClickStart() {
+    this.setState({ active: true });
 
-  onClickEnd = () => { this.setState({ active: false }); }
+    if (this.props.onClickStart) {
+      this.props.onClickStart();
+    }
+  }
+
+  onClickEnd() {
+    this.setState({ active: false });
+
+    if (this.props.onClickEnd) {
+      this.props.onClickEnd();
+    }
+  }
 
   render() {
     const {
       active,
       disabled,
       onButtonClick,
-      onClickStart,
-      onClickEnd,
       customClassName,
       children,
     } = this.props;
@@ -35,10 +48,10 @@ export default class Button extends Component {
       <button
         className={classNames(cx, customClassName)}
         onClick={onButtonClick}
-        onMouseDown={onClickStart}
-        onMouseUp={onClickEnd}
-        onTouchStart={onClickStart}
-        onTouchEnd={onClickEnd}
+        onMouseDown={this.onClickStart}
+        onMouseUp={this.onClickEnd}
+        onTouchStart={this.onClickStart}
+        onTouchEnd={this.onClickEnd}
         disabled={disabled}
       >
         {children}

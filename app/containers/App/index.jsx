@@ -33,6 +33,13 @@ export default class App extends Component {
     };
 
     this.audio = new GameAudio();
+    this.onMenuButtonClick = this.onMenuButtonClick.bind(this);
+    this.onMenuButtonClick = this.onMenuButtonClick.bind(this);
+    this.onPlayerPressStart = this.onPlayerPressStart.bind(this);
+    this.onPlayerPressEnd = this.onPlayerPressEnd.bind(this);
+    this.playComputerRound = this.playComputerRound.bind(this);
+    this.activateButton = this.activateButton.bind(this);
+    this.deactiveButton = this.deactiveButton.bind(this);
   }
 
   componentDidMount() {
@@ -58,7 +65,7 @@ export default class App extends Component {
     window.addEventListener('keyup', keyEvent(this.onPlayerPressEnd, true));
   }
 
-  onMenuButtonClick = () => {
+  onMenuButtonClick() {
     const { gameRunning } = this.state;
 
     // Check if game is running
@@ -83,9 +90,9 @@ export default class App extends Component {
     }
   }
 
-  onPlayerPressStart = (tile) => this.activateButton(tile)
+  onPlayerPressStart(tile) { this.activateButton(tile); }
 
-  onPlayerPressEnd = (tile) => {
+  onPlayerPressEnd(tile) {
     const {
       computerSeq,
       playerSeq,
@@ -125,7 +132,7 @@ export default class App extends Component {
     });
   }
 
-  playComputerRound = () => {
+  playComputerRound() {
     // Keep track of how many times the interval have been called
     let intervalCount = 0;
     const timeDiff = config.computerActiveButton;
@@ -171,11 +178,12 @@ export default class App extends Component {
     }, timeDiff);
   }
 
-  activateButton = (tile) => {
+  activateButton(tile) {
     this.setState({ activeButton: tile });
     this.audio.start(tile);
   }
-  deactiveButton = () => {
+
+  deactiveButton() {
     this.setState({ activeButton: undefined });
     this.audio.stop();
   }

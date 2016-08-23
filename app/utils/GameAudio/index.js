@@ -11,7 +11,7 @@ export default class GameAudio {
     };
   }
 
-  start = (tile) => {
+  start(tile) {
     this.osc = this.audioCtx.createOscillator();
     this.osc.frequency.value = this.frequencys[tile];
     this.osc.type = 'sine';
@@ -19,7 +19,7 @@ export default class GameAudio {
     this.osc.connect(this.audioDest);
   }
 
-  stop = () => {
+  stop() {
     this.osc.stop(this.audioCtx.currentTime);
     this.osc.disconnect(this.audioDest);
     this.osc = null;

@@ -10,10 +10,13 @@ export default class Hint extends Component {
   constructor(props) {
     super(props);
     this.state = { showHint: false };
+    this.onButtonClick = this.onButtonClick.bind(this);
+    this.generateHintWindow = this.generateHintWindow.bind(this);
   }
 
-  onButtonClick = () => this.setState({ showHint: !this.state.showHint });
-  generateHintWindow = () => {
+  onButtonClick() { this.setState({ showHint: !this.state.showHint }); }
+
+  generateHintWindow() {
     if (!this.state.showHint) return null;
 
     const hints = [
