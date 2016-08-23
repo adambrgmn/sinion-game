@@ -24,7 +24,11 @@ export default class App extends Component {
       gameRunning: false,
       computerPlaying: false,
       activeButton: undefined,
+      strictMode: false,
       error: false,
+      gameFinished: false,
+      infinitePlay: false,
+      showSettings: false,
       message: 'Let\'s get started! (Click the button 👆)',
       progress: {
         computerTotal: 0,
@@ -33,8 +37,8 @@ export default class App extends Component {
     };
 
     this.audio = new GameAudio();
-    this.onMenuButtonClick = this.onMenuButtonClick.bind(this);
-    this.onMenuButtonClick = this.onMenuButtonClick.bind(this);
+    this.onNewGameButtonClick = this.onNewGameButtonClick.bind(this);
+    this.onSettingsButtonClick = this.onSettingsButtonClick.bind(this);
     this.onPlayerPressStart = this.onPlayerPressStart.bind(this);
     this.onPlayerPressEnd = this.onPlayerPressEnd.bind(this);
     this.playComputerRound = this.playComputerRound.bind(this);
@@ -65,7 +69,7 @@ export default class App extends Component {
     window.addEventListener('keyup', keyEvent(this.onPlayerPressEnd, true));
   }
 
-  onMenuButtonClick() {
+  onNewGameButtonClick() {
     const { gameRunning } = this.state;
 
     // Check if game is running
@@ -90,12 +94,18 @@ export default class App extends Component {
     }
   }
 
+  onSettingsButtonClick() {
+    this.setState({ showSettings: !this.state.showSettings });
+  }
+
   onPlayerPressStart(tile) { this.activateButton(tile); }
 
   onPlayerPressEnd(tile) {
     const {
       computerSeq,
       playerSeq,
+      strictMode,
+      infinitePlay,
     } = this.state;
 
     const playerSeqLength = playerSeq.length;
@@ -103,7 +113,7 @@ export default class App extends Component {
 
     this.deactiveButton();
 
-    if (correspondingComputerTile !== tile) {
+    if (correspondingComputerTile !== tile && strictMode) {
       return this.setState({
         playerSeq: [],
         computerSeq: [],
@@ -111,6 +121,15 @@ export default class App extends Component {
         error: true,
         message: 'Gaah! Sorry that was wrong! Wan\'t to go at it again? (Click the button 👆)',
       });
+    }
+
+    if (correspondingComputerTile !== tile && !strictMode) {
+      return this.setState({
+        playerSeq: [],
+        activateButton: undefined,
+        error: true,
+        message: 'Gaah! Wrong button. I\'ll play again so you can try!',
+      }, () => this.playComputerRound(true));
     }
 
     return this.setState({
@@ -122,17 +141,28 @@ export default class App extends Component {
         playerCurrent: this.state.progress.playerCurrent + 1,
       },
     }, () => {
-      if (this.state.playerSeq.length === this.state.computerSeq.length) {
-        this.setState({
+      const finished = this.state.playerSeq.length === this.state.computerSeq.length;
+      const finalRound = this.state.computerSeq.length === config.maxRounds;
+
+      if (finished && finalRound && !infinitePlay) {
+        return this.setState({
+          message: 'Well done! You seem to have a master memory! Wan\'t to go again?',
+          gameFinished: true,
+        });
+      }
+
+      if (finished) {
+        return this.setState({
           playerSeq: [],
           message: 'Well done! That\'s how we roll! Now I go again...',
-        });
-        this.playComputerRound();
+        }, this.playComputerRound);
       }
+
+      return null;
     });
   }
 
-  playComputerRound() {
+  playComputerRound(replay) {
     // Keep track of how many times the interval have been called
     let intervalCount = 0;
     const timeDiff = config.computerActiveButton;
@@ -141,7 +171,7 @@ export default class App extends Component {
     this.setState(() => {
       const newTile = randomInt(1, 4);
       return {
-        computerSeq: this.state.computerSeq.concat(newTile),
+        computerSeq: replay ? this.state.computerSeq : this.state.computerSeq.concat(newTile),
         computerPlaying: true,
       };
     });
@@ -199,15 +229,23 @@ export default class App extends Component {
 
     return (
       <div className={styles.appContainer}>
-        <Menu gameRunning={gameRunning} onMenuButtonClick={this.onMenuButtonClick} />
+        <Menu
+          gameRunning={gameRunning}
+          onNewGameButtonClick={this.onNewGameButtonClick}
+          onSettingsButtonClick={this.onSettingsButtonClick}
+        />
+
         <Message message={message} />
+
         <Game
           activeButton={activeButton}
           gamePlanDisabled={!gameRunning && !computerPlaying}
           onButtonClickStart={this.onPlayerPressStart}
           onButtonClickEnd={this.onPlayerPressEnd}
         />
+
         <Progress {...progress} />
+
         <Hint />
       </div>
     );
