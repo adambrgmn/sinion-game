@@ -15,6 +15,11 @@
   text-indent: -9999px;
 
   @include colorBoxes(4);
+
+  @include mediaDesktop {
+    width: calc(25vw - 2rem);
+    height: calc(25vw - 2rem);
+  }
 }
 
 .gameButtonClicked {

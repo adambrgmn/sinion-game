@@ -28,3 +28,15 @@
     outline: none;
   }
 }
+
+@mixin mediaTablet {
+  @media (min-width: #{$width-tablet}) and (max-width: #{$width-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin mediaDesktop {
+  @media (min-width: #{$width-desktop}) {
+    @content;
+  }
+}
