@@ -3,7 +3,7 @@ import * as config from '../../config';
 
 import styles from './styles.scss';
 
-import GameAudio from '../../utils/gameAudio';
+import GameAudio from '../../utils/GameAudio';
 import randomInt from '../../utils/randomInt';
 
 import {
@@ -12,6 +12,8 @@ import {
   Game,
   Progress,
 } from '../../components';
+
+import Hint from '../Hint';
 
 export default class App extends Component {
   constructor(props) {
@@ -198,6 +200,7 @@ export default class App extends Component {
           onButtonClickEnd={this.onPlayerPressEnd}
         />
         <Progress {...progress} />
+        <Hint />
       </div>
     );
   }
